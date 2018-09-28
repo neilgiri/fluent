@@ -33,6 +33,7 @@
 #define PERIOD 10000000
 
 typedef KVStore<Key, ReadCommittedPairLattice<std::string>> MemoryKVS;
+typedef KVStore<Key, MaxLattice<std::string>> MaxMemoryKVS;
 
 // a map that represents which keys should be sent to which IP-port combinations
 typedef std::unordered_map<Address, std::unordered_set<Key>> AddressKeysetMap;
@@ -41,6 +42,7 @@ class Serializer {
  public:
   virtual ReadCommittedPairLattice<std::string> get(const Key& key,
                                                     unsigned& err_number) = 0;
+    virtual MaxLattice<std::string> get(const Key& key, unsigned& err_number) = 0;
   virtual bool put(const Key& key, const std::string& value,
                    const unsigned& timestamp) = 0;
   virtual void remove(const Key& key) = 0;
@@ -49,6 +51,7 @@ class Serializer {
 
 class MemorySerializer : public Serializer {
   MemoryKVS* kvs_;
+    MaxMemoryKVS* max_memory_kvs_;
 
  public:
   MemorySerializer(MemoryKVS* kvs) : kvs_(kvs) {}

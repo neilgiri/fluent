@@ -104,6 +104,10 @@ void send_gossip(AddressKeysetMap& addr_keyset_map, SocketCache& pushers,
 std::pair<ReadCommittedPairLattice<std::string>, unsigned> process_get(
     const Key& key, Serializer* serializer);
 
+std::pair<MaxLattice<TimestampValuePair<std::string>>, unsigned> process_get_helper(
+    const Key& key, Serializer* serializer);
+
+
 void process_put(const Key& key, const unsigned long long& timestamp,
                  const std::string& value, Serializer* serializer,
                  std::unordered_map<std::string, unsigned>& key_size_map);

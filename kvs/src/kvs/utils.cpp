@@ -44,6 +44,20 @@ void send_gossip(AddressKeysetMap& addr_keyset_map, SocketCache& pushers,
 
 std::pair<ReadCommittedPairLattice<std::string>, unsigned> process_get(
     const Key& key, Serializer* serializer) {
+    unsigned err_number = 0;
+    auto res = serializer->get(key, err_number);
+
+    // check if the value is an empty string
+    if (res.reveal().value == "") {
+      err_number = 1;
+    }
+
+  return std::pair<ReadCommittedPairLattice<std::string>, unsigned>(res,
+                                                                    err_number);
+}
+
+std::pair<MaxLattice<TimestampValuePair<std::string>>, unsigned> process_get_helper(
+  const Key& key, Serializer* serializer) {
   unsigned err_number = 0;
   auto res = serializer->get(key, err_number);
 
@@ -52,8 +66,7 @@ std::pair<ReadCommittedPairLattice<std::string>, unsigned> process_get(
     err_number = 1;
   }
 
-  return std::pair<ReadCommittedPairLattice<std::string>, unsigned>(res,
-                                                                    err_number);
+  return std::pair<MaxLattice<TimestampValuePair<std::string>>, unsigned>(res, err_number);
 }
 
 void process_put(const Key& key, const unsigned long long& timestamp,
