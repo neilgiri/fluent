@@ -13,6 +13,7 @@
 //  limitations under the License.
 
 #include "hash_ring.hpp"
+#include <iostream>
 
 #include <unistd.h>
 

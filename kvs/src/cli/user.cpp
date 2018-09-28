@@ -13,6 +13,7 @@
 //  limitations under the License.
 
 #include <fstream>
+#include <iostream>
 #include <unordered_set>
 
 #include "hash_ring.hpp"

@@ -13,6 +13,7 @@
 //  limitations under the License.
 
 #include <stdlib.h>
+#include <iostream>
 
 #include "hash_ring.hpp"
 #include "requests.hpp"

@@ -17,6 +17,7 @@
 
 #include <fstream>
 #include <string>
+#include <iostream>
 
 #include "../kvs/base_kv_store.hpp"
 #include "../kvs/rc_pair_lattice.hpp"

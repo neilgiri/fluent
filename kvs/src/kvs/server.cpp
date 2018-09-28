@@ -13,6 +13,7 @@
 //  limitations under the License.
 
 #include <chrono>
+#include <iostream>
 
 #include "kvs/kvs_handlers.hpp"
 #include "yaml-cpp/yaml.h"
